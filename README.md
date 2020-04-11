@@ -5,6 +5,7 @@
 ### 1. Soal Nomor 1 
 ## 4a
 a. Buatlah program untuk melakukan perkalian matriks. Ukuran matriks pertama adalah 4x2, dan matriks kedua 2x5. Isi dari matriks didefinisikan di dalam kodingan. Matriks nantinya akan berisi angka 1-20 (tidak perlu dibuat filter angka). 
+
 b. Tampilkan matriks hasil perkalian tadi ke layar. 
 
 Deklarasi matriks beserta ukurannya
@@ -69,6 +70,7 @@ Dan yang terakhir untuk detach segment dari data menggunakan shmdt dan untuk men
 ```
 ## 4b
 a. Buatlah program yang akan mengambil variabel hasil perkalian matriks dari program "4a.c" (program sebelumnya), dan tampilkan hasil matriks tersebut ke layar. 
+
 b. Setelah ditampilkan, berikutnya untuk setiap angka dari matriks tersebut, carilah nilai faktorialnya, dan tampilkan hasilnya ke layar dengan format seperti matriks. 
 
 Menggunakan deret geometri untuk mendapatkan matriks penjumlahan
