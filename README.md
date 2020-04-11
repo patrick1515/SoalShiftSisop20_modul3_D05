@@ -8,7 +8,8 @@ a. Buatlah program untuk melakukan perkalian matriks. Ukuran matriks pertama ada
 b. Tampilkan matriks hasil perkalian tadi ke layar. 
 
 Deklarasi matriks beserta ukurannya
-```int A[4][2] = { {1, 2},
+```
+    int A[4][2] = { {1, 2},
                 {3, 4},
                 {5, 6},
                 {7, 8} },
@@ -17,7 +18,8 @@ Deklarasi matriks beserta ukurannya
     C[4][5];
 ```
 Lalu, membuat thread untuk melakukan perkalian matriks dan kemudian dimasukkan ke dalam suatu shared memory agar bisa kembali diakses di 4b.
-```void* count(void *arg) {
+```
+    void* count(void *arg) {
     pthread_t id = pthread_self();
     if (pthread_equal(id, tid[0])){     
         for (int i = 0; i < 5; i++) 
@@ -51,7 +53,8 @@ Lalu, membuat thread untuk melakukan perkalian matriks dan kemudian dimasukkan k
     matriks = (int *)shmat(shmid, NULL, 0);
 ```
 Untuk menampilkan hasil matriks perkalian menggunakan code di bawah ini
-``` for (int i = 0; i < baris; i++){
+``` 
+    for (int i = 0; i < baris; i++){
         for (int j = 0; j < kolom; j++){
             matriks[i*kolom + j] = C[i][j];
             printf("%d\t", matriks[i*kolom + j]);
@@ -60,7 +63,8 @@ Untuk menampilkan hasil matriks perkalian menggunakan code di bawah ini
     }
 ```
 Dan yang terakhir untuk detach segment dari data menggunakan shmdt dan untuk mengubah informasi tentang shared memory menggunakan shmctl
-```shmdt(matriks);
+```
+   shmdt(matriks);
    shmctl(shmid, IPC_RMID, NULL);
 ```
 ## 4b
@@ -68,7 +72,8 @@ a. Buatlah program yang akan mengambil variabel hasil perkalian matriks dari pro
 b. Setelah ditampilkan, berikutnya untuk setiap angka dari matriks tersebut, carilah nilai faktorialnya, dan tampilkan hasilnya ke layar dengan format seperti matriks. 
 
 Menggunakan deret geometri untuk mendapatkan matriks penjumlahan
- ```void* count(void *arg) {
+ ```
+    void* count(void *arg) {
     struct args* data;
     data = (struct args *) arg;
     int x = data->x;
@@ -77,7 +82,8 @@ Menggunakan deret geometri untuk mendapatkan matriks penjumlahan
 }
 ```
 Lalu, untuk menampilkan hasil matriks perkalian dari 4a dan hasil matriks penjumlahan menggunakan code berikut
-``` printf("Matriks Perkalian\n");
+``` 
+    printf("Matriks Perkalian\n");
     for (int i = 0; i < baris; i++){
         for (int j = 0; j < kolom; j++){
             printf("%d\t", matriks[i*kolom + j]);
@@ -101,7 +107,8 @@ Lalu, untuk menampilkan hasil matriks perkalian dari 4a dan hasil matriks penjum
 ## 4c
 Pada program ini, Norland diminta mengetahui jumlah file dan folder di direktori saat ini dengan command "ls | wc -l". dan harus menggunakan IPC Pipes
 Pada soal ini, menggunakan 2 pipes dan menggunakan fork.
-```  int fd1[2];  
+```  
+    int fd1[2];  
 	int fd2[2]; 
 	pid_t p; 
     int status;
@@ -117,7 +124,8 @@ Pada soal ini, menggunakan 2 pipes dan menggunakan fork.
 ```
 Pipe pertama adalah fd1 dan pipe kedua adalah fd2. Ketika fork dapat dilakukan dan membuat child, maka pipe pertama akan diduplikasi dan pipe pertama tersebut akan ditutup. Lalu, program akan mengeksekusi command ls. 
 Ketika child selesai melakukan proses, program menjalankan proses parentnya. Program akan menutup pipe kedua, pipe pertama akan diduplikasi, pipe kedua akan diduplikasi dan pipe pertama akan ditutup. Setelah itu, program akan mengeksekusi command wc -l.
-```p = fork(); 
+```
+   p = fork(); 
 	if (p < 0){ 
 		fprintf(stderr, "Fork Failed" ); 
 		return 1; 
